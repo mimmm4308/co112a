@@ -4,32 +4,44 @@
 // File name: projects/04/Mult.asm
 
 // Multiplies R0 and R1 and stores the result in R2.
-// (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
+// (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[3], respectively.)
 
 // Put your code here.
-@2
-M = 0
+
+@2	//GO TO FINAL ANSWER BOX
+M=0	//ZERO ANS BOX
 
 @0
-D = M
-@LOOP
-D;JGE
+D=M
+@END
+D;JEQ	//IF ONE PRODUCT IS ZERO
+
+@1
+D=M
+@END
+D;JEQ	//IF ONE PRODUCT IS ZERO
+
+@0	//NOT NECESSARY
+D=M	//
+@3	//
+M=D	//ONLY TO KEEP THE NUMBERS BEING MUTLIPLED
+
 
 (LOOP)
-    @1
-    M = M - 1
-    D = M
-    @END
-    D;JLT
+@1	//GET 2ND NUM
+D=M	//D HAS 2ND NUM
 
-    @0
-    D = M
+@2	//GO TO FINAL ANSWER BOX
+M=D+M	//RAM[2] NOW HAS 2ND NUMBER + ITS PREVIOUS VALUE
 
-    @2
-    M = M + D
-@LOOP
-    0;JMP
+@3	//GET 1ST NUM
+M=M-1	//1ST NUM-1
+
+D=M	//IDK WHY D NEEDS TO =M?
+@LOOP	//WHERE TO JUMP TO
+D;JGT	//JUMP		    (WHY CANT THIS BE M;JGT?)
+
 
 (END)
 @END
-    0;JMP
+0;JMP	//FOREVER LOOP
